@@ -1,0 +1,60 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+.form-registration {
+  max-width: 400px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-registration .form-registration-heading,
+.form-registration .checkbox {
+  margin-bottom: 10px;
+}
+.form-registration img{
+  height: 40px;
+  margin: 0 auto;
+  display: block;
+}
+.form-registration input[type="text"],
+.form-registration input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+.form-registration input[type="text"]:focus,
+.form-registration input[type="password"]:focus {
+  border:solid 1px #e4007b; /*  pink */
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #e4007b;
+  outline: 0 none;
+}
+.form-registration input[type="radio"] {
+  margin-right: 5px;
+  margin-top: 0;
+}
+.form-registration select{
+  width: 75px;
+}
+#registration-button{
+  background-color: #e4007b;
+  background-image: none;
+  width: 100%;
+  margin-top: 10px;
+}
+#registration-button:hover{
+  width: 100%;
+  margin-top: 10px;
+  background-color: #e4007b;
+  background-image: none;
+  opacity: 0.7;
+}
