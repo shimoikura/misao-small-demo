@@ -24,44 +24,67 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
   $day = $_POST["day"];
   $month = $_POST["month"];
   $year = $_POST["year"];
+
+  $error_num = 0;
+
+  // email sent from form
+    $array = "select id from user_information where email='".$email."'";
+    $result = mysqli_query($conn,$array);
+    $count = mysqli_num_rows($result);
+    echo $count;
   // ------------------------------------------------------
   // Validation ↓↓↓↓↓↓↓↓↓↓↓↓↓ ----------------------------
   if(!empty($_POST['gender'])) {
     $gender=$_POST['gender'];
   }
-  elseif(empty($_POST['gender'])) {
+  else if(empty($_POST['gender'])) {
     $errors['gender1'] = "no gender ";
     $gender="";
+    $error_num++;
   }
   if (empty($name)) {
     $errors['name1'] = "Enter the name";
+    $error_num++;
   }
   if (empty($email)) {
    $errors['email1'] = "Enter the email";
+   $error_num++;
   }
-  elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)){
+  else if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
     $errors['email2'] = "Enter a valid email";
+    $error_num++;
+  }
+  if ($count >= 1) {
+    $errors['email3'] = "Your email address is already used.";
+    $error_num++;
   }
   if (empty($password)) {
     $errors['password1'] = "Enter the password";
+    $error_num++;
   }
-  elseif (! preg_match("/^[a-z A-Z 0-9]+$/",$password)) {
+  else if (! preg_match("/^[a-z A-Z 0-9]+$/",$password)) {
     $errors['password2'] = "Enter a valid password";
+    $error_num++;
   }
-  elseif (strlen($password) < 6 || strlen($password) > 8) {
+  else if (strlen($password) < 6 || strlen($password) > 8) {
     $errors['password3'] = "Your passward number of characters is different";
+    $error_num++;
   }
-  if ($password != $password1) {
+  else if ($password != $password1) {
     $errors['password4'] = "Passward is wrong";
+    $error_num++;
   }
   if (empty($phone)) {
     $errors['phone1'] = "Enter the phone";
+    $error_num++;
   }
-  elseif (! preg_match("/^[0-9]+$/",$phone)) {
+  else if (! preg_match("/^[0-9]+$/",$phone)) {
     $errors['phone2'] = "Enter a valid phone number";
+    $error_num++;
   }
-  elseif (strlen($phone) < 8 || strlen($phone) > 10) {
+  else if (strlen($phone) < 8 || strlen($phone) > 10) {
     $errors['phone3'] = "The number of phone number is different";
+    $error_num++;
   }
   else {
   // empty of city and country is OK!
@@ -72,19 +95,13 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
       $country = "";
     }
   // -------------------------
-    $query = "insert into user_information (id,name,email,password,phone,city,country,day,month,year,gender)values('','$name','$email','$password','$phone','$city','$country','$day','$month','$year','$gender')";
-    $run = mysqli_query($conn,$query);
-// 確認---------------------
-    if($run){
-      echo "success";
-    }
-    else {
-      echo "error.";
-    }
-// --------------------------
-    // リダイレクトを実行
-    header("location: login.php");
+    if ($error_num == 0) {
+      $query = "insert into user_information (id,name,email,password,phone,city,country,day,month,year,gender)values('','$name','$email','$password','$phone','$city','$country','$day','$month','$year','$gender')";
+      $run = mysqli_query($conn,$query);
+      // リダイレクトを実行
+      header("location: login.php");
       mysqli_close($conn);
+    }
   }
 }
 ?>
