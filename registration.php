@@ -63,30 +63,30 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
   elseif (strlen($phone) < 8 || strlen($phone) > 10) {
     $errors['phone3'] = "The number of phone number is different";
   }
-  elseif (empty($city)) {
-    $city = "";
-  }
-  elseif (empty($country)) {
-    $country = "";
-  }
   else {
+  // empty of city and country is OK!
+    if (empty($city)) {
+      $city = "";
+    }
+    if (empty($country)) {
+      $country = "";
+    }
+  // -------------------------
     $query = "insert into user_information (id,name,email,password,phone,city,country,day,month,year,gender)values('','$name','$email','$password','$phone','$city','$country','$day','$month','$year','$gender')";
     $run = mysqli_query($conn,$query);
-
 // 確認---------------------
-    // if($run){
-    //   echo "success";
-    // }
-    // else {
-    //   echo "error.";
-    // }
-// ---------------------------
-    mysqli_close($conn);
+    if($run){
+      echo "success";
+    }
+    else {
+      echo "error.";
+    }
+// --------------------------
     // リダイレクトを実行
-    header("Location:http://localhost/yoshiki/misao-small-demo/index.php");
+    header("location: login.php");
+      mysqli_close($conn);
   }
 }
-
 ?>
 
 <!DOCTYPE html>
