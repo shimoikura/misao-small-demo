@@ -5,10 +5,10 @@ $username = "root";
 $password = "";
 $conn = mysqli_connect($severname,$username,$password);
 $db = mysqli_select_db($conn,"misao_small_demo");
-// 配列の中身を明示してくれる
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+// 配列の中身を明示してくれる  (チェック用)
+// echo '<pre>';
+// var_dump($_POST);
+// echo '</pre>';
 //---------------------------
 $errors = array();
 // isset関数は変数にNULL以外の値がセットされているかを調べる関数
@@ -24,14 +24,13 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
   $day = $_POST["day"];
   $month = $_POST["month"];
   $year = $_POST["year"];
-
   $error_num = 0;
-
+  // -----------------------------------------------
   // email sent from form
     $array = "select id from user_information where email='".$email."'";
     $result = mysqli_query($conn,$array);
     $count = mysqli_num_rows($result);
-    echo $count;
+    // echo $count; （チェック用）
   // ------------------------------------------------------
   // Validation ↓↓↓↓↓↓↓↓↓↓↓↓↓ ----------------------------
   if(!empty($_POST['gender'])) {
@@ -95,12 +94,33 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
       $country = "";
     }
   // -------------------------
+  // エラーが一つも無かったら　成功
     if ($error_num == 0) {
+    //データベースへ情報を挿入 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       $query = "insert into user_information (id,name,email,password,phone,city,country,day,month,year,gender)values('','$name','$email','$password','$phone','$city','$country','$day','$month','$year','$gender')";
       $run = mysqli_query($conn,$query);
-      // リダイレクトを実行
+    // リダイレクトを実行---------------------------------------------------
       header("location: login.php");
+    // --------------------------------------------------------------------
+      // email and password sent from form ---------------------------------------------------------------------
+      $array = "select * from user_information where email='".$email."' and password = '".$password."'";
+      $result = mysqli_query($conn,$array);
+      // 登録したデータを配列で取得
+      $data = mysqli_fetch_array($result);
+    //DATABASE close
       mysqli_close($conn);
+      $id = $data["id"];    //Definition $id
+// record to user_information.txt and user_information.doc
+      $informations = array('id' => $id ,'name' => $name,'email' => $email, 'password' => $password,'phone' => $phone,'city' =>$city,'country'=>$country);
+      foreach ($informations as $key) {
+        $file1 = fopen("user_information.txt","a+");
+        $file2 = fopen("user_information.doc","a+");
+        fwrite($file1,"$key".PHP_EOL);
+        fwrite($file2,"$key".PHP_EOL);
+      }
+        fwrite($file1,PHP_EOL.PHP_EOL);
+// -------------------------------------------------------------------------------
+
     }
   }
 }
