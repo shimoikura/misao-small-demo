@@ -1,7 +1,5 @@
 <?php include "header.php" ?>
 
-
-
     <div class="container">
       <!-- top-img-box -->
       <div class="row top-img-box">
@@ -27,11 +25,4 @@
       </div>
     </div>
 
-<!-- footer -->
-    <div id="footer">
-      <div class="container">
-        <p class="muted credit">copy&copy MISAO.language.institude</p>
-      </div>
-    </div>
-  </body>
-</html>
+<?php include "footer.php" ?>
