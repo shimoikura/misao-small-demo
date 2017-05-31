@@ -206,7 +206,8 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
         </table>
         <input id="registration-button" class="btn btn-large btn-primary" type="submit" name="register" value="Create your MISAO account"></input>
       </form>
-      <a href="index.php">HOME</a>
+      <p><a href="index.php">HOME </a></p>
+      <p><a href="login.php">To Login page</a></p>
     </div>
   </body>
 </html>

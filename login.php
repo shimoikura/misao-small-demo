@@ -8,9 +8,9 @@ $conn = mysqli_connect($severname,$username,$password);
 $db = mysqli_select_db($conn,"misao_small_demo");
 
 // 配列の中身を明示してくれる
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($_POST);
+// echo '</pre>';
 //---------------------------
 $errors = array();
 // isset関数は変数にNULL以外の値がセットされているかを調べる関数
@@ -83,7 +83,7 @@ if(isset($_POST['login']) && $_POST['login'] === "Login"){
     }
     echo "</ul>";
     ?>
-    <div class="container">
+    <div class="container box-login">
       <form class="form-signin" action="login.php" method="post">
         <img src="img/logo1.png" alt="">
         <h2 class="form-signin-heading">Please sign in</h2>
@@ -96,7 +96,7 @@ if(isset($_POST['login']) && $_POST['login'] === "Login"){
 
       </form>
       <p>New customer? <a href="registration.php">Start here</a></p>
-      <a href="index.php">back</a>
+      <p><a href="index.php">HOME</a></p>
     </div> <!-- /container -->
 
     <!-- Le javascript
