@@ -34,11 +34,18 @@
   display: block;
   margin: 0 auto;
 }
+.header2 p{
+  margin-right: 20px;
+  font-size: 20px;
+  margin-top: 10px;
+    color: #999;
+}
 #footer{
   height: 60px;
   /*background-color: red;*/
   background-color: #f5f5f5;
 }
 #footer p{
+  margin-top: 15px;
   text-align: center;
 }

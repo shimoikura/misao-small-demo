@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,9 +6,29 @@
     <title>MISAO SMALL DEMO</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"</script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('.nav_list').click(function(){
+        var myurl = window.location.pathname.split("/").pop();
+        var url = $(this).children('a').attr('href');
+        alert(myurl);
+
+        if (myurl == url) {
+          $(this).addClass("active");
+        }
+        // $('.nav a[href="'+url+'"]').css({color:red});
+        // $('.mylink').css({'color':'blue','font-size':'20px'});
+        });
+    });
+    </script>
+    <style>
+      .active{background-color: red}
+    </style>
   </head>
+  <?php $_SESSION['myurl'] = $_SERVER["REQUEST_URI"]; ?>
   <body>
     <!-- header -->
     <div class="container-fluid header">
@@ -29,12 +50,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!-- <a class="brand" href="#">Project name</a> -->
-          <div class="nav-collapse collapse">
+          <div class="header2 nav-collapse collapse">
             <ul class="nav">
-              <li><a href="index.php">Home</a></li>
-              <li class="active"><a href="#">About</a></li>
-              <li><a href="contact.php">Contact</a></li>
+              <li class="nav_list"><a href="index.php">Home</a></li>
+              <li class="nav_list"><a href="about-us.php">About</a></li>
+              <li class="nav_list"><a href="contact.php">Contact</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -54,6 +74,12 @@
               <button type="submit" class="btn"><a href="login.php" style="text-decoration: none; color:inherit;">Sign in</a></button>
               <button type="submit" class="btn"><a href="registration.php" style="text-decoration: none; color:inherit;">Registration</a></button>
             </form>
+            <?php
+              if (! isset($_SESSION['login_user'])) {
+                $_SESSION['login_user'] = "Guest";
+              }
+             ?>
+            <p class="pull-right">hello <?php echo $_SESSION['login_user'] ?></p>
           </div><!--/.nav-collapse -->
         </div>
       </div>
