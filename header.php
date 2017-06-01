@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php
+  session_start();
+  $directoryURI = $_SERVER['REQUEST_URI']; ///yoshiki/misao-small-demo/index.php
+  $path = parse_url($directoryURI, PHP_URL_PATH); ///yoshiki/misao-small-demo/index.php
+  $components = explode('/', $path);//Array ( [0] => [1] => yoshiki [2] => misao-small-demo [3] => contact.php )
+  $first_part = $components[3];
+  // echo $first_part;
+  print_r($components);
+  echo __FILE__ . '<br />';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,21 +19,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js"</script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        $('.nav_list').click(function(){
-        var myurl = window.location.pathname.split("/").pop();
-        var url = $(this).children('a').attr('href');
-        alert(myurl);
-
-        if (myurl == url) {
-          $(this).addClass("active");
-        }
-        // $('.nav a[href="'+url+'"]').css({color:red});
-        // $('.mylink').css({'color':'blue','font-size':'20px'});
-        });
-    });
-    </script>
     <style>
       .active{background-color: red}
     </style>
@@ -52,9 +47,9 @@
           </button>
           <div class="header2 nav-collapse collapse">
             <ul class="nav">
-              <li class="nav_list"><a href="index.php">Home</a></li>
-              <li class="nav_list"><a href="about-us.php">About</a></li>
-              <li class="nav_list"><a href="contact.php">Contact</a></li>
+              <li class="nav_list <?php if ($first_part=="index.php") {echo "active"; } else  {echo "noactive";}?>"><a href="index.php">Home</a></li>
+              <li class="nav_list <?php if ($first_part=="about-us.php") {echo "active"; } else  {echo "noactive";}?>"><a href="about-us.php">About</a></li>
+              <li class="nav_list<?php if ($first_part=="contact.php") {echo "active"; } else  {echo "noactive";}?>"><a href="contact.php">Contact</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">

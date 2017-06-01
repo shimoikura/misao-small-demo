@@ -9,6 +9,7 @@ if (! isset($_SESSION["login_user"]) || $_SESSION['login_user'] == "Guest") {
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="css/custom.css">
   </head>
   <body>
     <h1>WELCOME!!!</h1>

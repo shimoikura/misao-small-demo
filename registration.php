@@ -99,9 +99,10 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
     //データベースへ情報を挿入 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       $query = "insert into user_information (id,name,email,password,phone,city,country,day,month,year,gender)values('','$name','$email','$password','$phone','$city','$country','$day','$month','$year','$gender')";
       $run = mysqli_query($conn,$query);
-    // リダイレクトを実行---------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // リダイレクトを実行----------------
       header("location: login.php");
-    // --------------------------------------------------------------------
+    // -------------------------------
       // email and password sent from form ---------------------------------------------------------------------
       $array = "select * from user_information where email='".$email."' and password = '".$password."'";
       $result = mysqli_query($conn,$array);
@@ -109,6 +110,7 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
       $data = mysqli_fetch_array($result);
     //DATABASE close
       mysqli_close($conn);
+    //--------------------------------------------------------------------------------------------------------------------------------------------------
       $id = $data["id"];    //Definition $id
 // record to user_information.txt and user_information.doc
       $informations = array('id' => $id ,'name' => $name,'email' => $email, 'password' => $password,'phone' => $phone,'city' =>$city,'country'=>$country);
@@ -119,7 +121,7 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
         fwrite($file2,"$key".PHP_EOL);
       }
         fwrite($file1,PHP_EOL.PHP_EOL);
-// -------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     }
   }
