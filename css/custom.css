@@ -40,6 +40,17 @@
   margin-top: 10px;
     color: #999;
 }
+/*----------- midle-img-box -----------*/
+.midle-img-box{
+  margin-bottom: 30px;
+}
+.midle-img-box h3{
+  text-align: center;
+}
+.midle-img-box img{
+  margin-bottom: 20px;
+}
+/*---------------Footer-----------------------*/
 #footer{
   height: 60px;
   /*background-color: red;*/
