@@ -10,7 +10,7 @@ $db = mysqli_select_db($conn,"misao_small_demo");
 // var_dump($_POST);
 // echo '</pre>';
 //---------------------------
-$errors = array();
+$errors = array('name1'=>"",'gender1'=>"",'email1'=>"",'email2'=>"",'email3'=>"",'password1'=>"",'password2'=>"",'password3'=>"",'password4'=>"",'password5'=>"",'phone1'=>"",'phone2'=>"",'phone3'=>"");
 // isset関数は変数にNULL以外の値がセットされているかを調べる関数
 if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account"){
   // Definition and Initialization
@@ -69,12 +69,15 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
     $errors['password3'] = "Your passward number of characters is different";
     $error_num++;
   }
+  if (empty($password1)) {
+    $errors['password4'] = "Enter the confirm password";
+  }
   else if ($password != $password1) {
-    $errors['password4'] = "Passward is wrong";
+    $errors['password5'] = "Passward is wrong";
     $error_num++;
   }
   if (empty($phone)) {
-    $errors['phone1'] = "Enter the phone";
+    $errors['phone1'] = "Enter the phone number";
     $error_num++;
   }
   else if (! preg_match("/^[0-9]+$/",$phone)) {
@@ -138,23 +141,35 @@ if(isset($_POST['register']) && $_POST['register'] == "Create your MISAO account
   </head>
   <body>
     <?php
-    echo "<ul>";
-    foreach($errors as $message){
-        echo "<li>";
-        echo $message;
-        echo "</li>";
-    }
-    echo "</ul>";
+    // echo "<ul>";
+    // foreach($errors as $message){
+    //     echo "<li>";
+    //     echo $message;
+    //     echo "</li>";
+    // }
+    // echo "</ul>";
     ?>
     <div class="container">
       <form class="form-registration" action="registration.php" method="post">
         <img src="img/logo1.png" alt="">
         <h2 class="form-registration-heading">Create account</h2>
         <input type="text" name="name" class="input-block-level" placeholder="Name">
+        <p><?php echo $errors['name1']; ?></p>
         <input type="text" name="email" value="" class="input-block-level" placeholder="Email">
+        <p><?php echo $errors['email1']; ?></p>
+        <p><?php echo $errors['email2']; ?></p>
+        <p><?php echo $errors['email3']; ?></p>
         <input type="password" name="password" value="" class="input-block-level" placeholder="Password (6-8)">
+        <p><?php echo $errors['password1']; ?></p>
+        <p><?php echo $errors['password2']; ?></p>
+        <p><?php echo $errors['password3']; ?></p>
         <input type="password" name="check-password" value="" class="input-block-level" placeholder="Confirm password">
+        <p><?php echo $errors['password4']; ?></p>
+        <p><?php echo $errors['password5']; ?></p>
         <input type="text" name="phone" value="" class="input-block-level" placeholder="Phone Number (8-10)">
+        <p><?php echo $errors['phone1']; ?></p>
+        <p><?php echo $errors['phone2']; ?></p>
+        <p><?php echo $errors['phone3']; ?></p>
         <input type="text" name="city" value="" class="input-block-level" placeholder="City">
         <input type="text" name="country" value="" class="input-block-level" placeholder="Country">
         <table>
