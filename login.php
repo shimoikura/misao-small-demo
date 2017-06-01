@@ -12,7 +12,7 @@ $db = mysqli_select_db($conn,"misao_small_demo");
 // var_dump($_POST);
 // echo '</pre>';
 //---------------------------
-$errors = array();
+$errors = array('email1'=>"",'email2'=>"",'password1'=>"",'password2'=>"");
 // isset関数は変数にNULL以外の値がセットされているかを調べる関数
 if(isset($_POST['login']) && $_POST['login'] === "Login"){
   $email = $_POST['email'];
@@ -75,20 +75,24 @@ if(isset($_POST['login']) && $_POST['login'] === "Login"){
 
   <body>
     <?php
-    echo "<ul>";
-    foreach($errors as $message){
-        echo "<li>";
-        echo $message;
-        echo "</li>";
-    }
-    echo "</ul>";
+    // echo "<ul>";
+    // foreach($errors as $message){
+    //     echo "<li>";
+    //     echo $message;
+    //     echo "</li>";
+    // }
+    // echo "</ul>";
     ?>
     <div class="container box-login">
       <form class="form-signin" action="login.php" method="post">
         <img src="img/logo1.png" alt="">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="text" class="input-block-level" placeholder="Email address" name="email">
+        <p><?php echo $errors['email1']; ?></p>
+        <p><?php echo $errors['email2']; ?></p>
         <input type="password" class="input-block-level" placeholder="Password" name="password">
+        <p><?php echo $errors['password1']; ?></p>
+        <p><?php echo $errors['password2']; ?></p>
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
