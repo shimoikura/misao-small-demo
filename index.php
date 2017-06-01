@@ -3,7 +3,11 @@
     <div class="container">
       <!-- top-img-box -->
       <div class="row top-img-box">
-        <img src="img/top1.jpg" alt="">
+        <ul class="bxslider">
+          <li><img src="img/top1.jpg"></li>
+          <li><img src="img/top1.jpg"></li>
+          <li><img src="img/top1.jpg"></li>
+        </ul>
       </div>
       <!-- midle-img-box -->
       <div class="row midle-img-box">

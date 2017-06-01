@@ -5,8 +5,7 @@
   $components = explode('/', $path);//Array ( [0] => [1] => yoshiki [2] => misao-small-demo [3] => contact.php )
   $first_part = $components[3];
   // echo $first_part;
-  print_r($components);
-  echo __FILE__ . '<br />';
+  // print_r($components);
 
 ?>
 <!DOCTYPE html>
@@ -19,11 +18,23 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js"</script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <style>
-      .active{background-color: red}
-    </style>
+<!-- Top Page Slider Setting -------------------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="css/jquery.bxslider.min.css" rel="stylesheet" />
+     <script src="js/jquery.bxslider.min.js"></script>]
+     <!-- <link href="css/jquery.bxslider.css" rel="stylesheet" /> -->
+     <script type="text/javascript">
+             $(document).ready(function(){
+                 $('.bxslider').bxSlider({
+                     auto: true,
+                     speed: 1000, //スピード設定
+                    //  画像のスライド方法の変更。horizontal（平行方向）vertical（垂直方向）fade（フェードアウト）の3つが選択できる。（デフォルトでは"horizontal"）
+                    // mode:'vertical'
+                 });
+           });
+      </script>
+<!-- Top Page Slider Setting -------------------------------------------------------------------->
   </head>
-  <?php $_SESSION['myurl'] = $_SERVER["REQUEST_URI"]; ?>
   <body>
     <!-- header -->
     <div class="container-fluid header">
@@ -49,7 +60,7 @@
             <ul class="nav">
               <li class="nav_list <?php if ($first_part=="index.php") {echo "active"; } else  {echo "noactive";}?>"><a href="index.php">Home</a></li>
               <li class="nav_list <?php if ($first_part=="about-us.php") {echo "active"; } else  {echo "noactive";}?>"><a href="about-us.php">About</a></li>
-              <li class="nav_list<?php if ($first_part=="contact.php") {echo "active"; } else  {echo "noactive";}?>"><a href="contact.php">Contact</a></li>
+              <li class="nav_list <?php if ($first_part=="contact.php") {echo "active"; } else  {echo "noactive";}?>"><a href="contact.php">Contact</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
